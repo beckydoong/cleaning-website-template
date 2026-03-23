@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crystal Clear Cleaning Co. | Professional Home & Office Cleaning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal: #1a6b5a;
+      --teal-dark: #124d41;
+      --teal-light: #2a8a74;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cream: #faf8f4;
+      --white: #ffffff;
+      --dark: #1a1a2e;
+      --gray: #6b7280;
+      --light-gray: #f3f4f6;
+      --border: #e5e7eb;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--white); overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 18px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+    nav.scrolled {
+      background: var(--teal-dark);
+      padding: 12px 5%;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--white);
+    }
+    .nav-logo-icon {
+      width: 40px; height: 40px; background: var(--gold);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      color: rgba(255,255,255,0.9); font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-phone { color: var(--gold-light) !important; font-weight: 600 !important; }
+    .btn-nav {
+      background: var(--gold); color: var(--dark) !important;
+      padding: 10px 22px; border-radius: 25px; font-weight: 600 !important;
+      font-size: 0.85rem !important; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-nav:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s; }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--teal-dark); z-index: 999; flex-direction: column;
+      align-items: center; justify-content: center; gap: 28px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: white; font-size: 1.3rem; font-weight: 500; }
+    .mobile-menu .btn-nav { font-size: 1rem !important; padding: 14px 36px; }
+    .mobile-close { position: absolute; top: 22px; right: 5%; font-size: 2rem; color: white; background: none; border: none; cursor: pointer; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, rgba(18,77,65,0.88) 0%, rgba(26,107,90,0.75) 100%),
+        url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center; padding: 120px 5% 80px;
+    }
+    .hero-inner { max-width: 680px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.25); border: 1px solid var(--gold);
+      color: var(--gold-light); padding: 7px 18px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    #hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: white; line-height: 1.15; margin-bottom: 20px;
+    }
+    #hero h1 span { color: var(--gold-light); }
+    .hero-sub {
+      color: rgba(255,255,255,0.85); font-size: 1.1rem; line-height: 1.7;
+      margin-bottom: 36px; max-width: 520px;
+    }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 44px; }
+    .btn-primary {
+      background: var(--gold); color: var(--dark);
+      padding: 16px 34px; border-radius: 30px; font-weight: 700;
+      font-size: 0.95rem; border: none; cursor: pointer;
+      transition: all 0.25s; display: inline-block;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,0.5); }
+    .btn-outline {
+      background: transparent; color: white;
+      padding: 15px 34px; border-radius: 30px; font-weight: 600;
+      font-size: 0.95rem; border: 2px solid rgba(255,255,255,0.6); cursor: pointer;
+      transition: all 0.25s; display: inline-block;
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 32px; }
+    .stat { color: white; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold-light); display: block; }
+    .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--teal-dark); padding: 20px 5%;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px 40px;
+    }
+    .trust-item { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.85); font-size: 0.85rem; font-weight: 500; }
+    .trust-icon { font-size: 1.1rem; }
+
+    /* ── SECTIONS ── */
+    section { padding: 90px 5%; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+    }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--dark); line-height: 1.25; margin-bottom: 18px; }
+    .section-sub { color: var(--gray); font-size: 1.05rem; line-height: 1.75; max-width: 580px; }
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin: 0 auto; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--cream); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; margin-top: 56px;
+    }
+    .service-card {
+      background: white; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07); transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+    .service-img { height: 200px; width: 100%; object-fit: cover; }
+    .service-body { padding: 24px; }
+    .service-icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .service-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .service-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.65; margin-bottom: 18px; }
+    .service-link { color: var(--teal); font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .service-link:hover { color: var(--teal-light); }
+
+    /* ── HOW IT WORKS ── */
+    #how { background: var(--teal-dark); }
+    #how .section-label { color: var(--gold-light); }
+    #how .section-title { color: white; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 48px; margin-top: 60px; position: relative; }
+    .step { text-align: center; position: relative; }
+    .step-num {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--gold); color: var(--dark);
+      font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .step h3 { color: white; font-size: 1.15rem; margin-bottom: 10px; }
+    .step p { color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.65; }
+
+    /* ── ABOUT ── */
+    #about { background: white; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-top: 20px; }
+    .about-imgs { position: relative; height: 460px; }
+    .about-img-main {
+      position: absolute; top: 0; left: 0; width: 80%; height: 370px;
+      object-fit: cover; border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+    }
+    .about-img-sub {
+      position: absolute; bottom: 0; right: 0; width: 55%; height: 220px;
+      object-fit: cover; border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      border: 5px solid white;
+    }
+    .about-badge {
+      position: absolute; top: 28px; right: 0;
+      background: var(--teal); color: white; border-radius: 12px;
+      padding: 14px 20px; text-align: center;
+      box-shadow: 0 8px 24px rgba(26,107,90,0.3);
+    }
+    .about-badge-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold-light); display: block; }
+    .about-badge-text { font-size: 0.75rem; color: rgba(255,255,255,0.8); line-height: 1.4; }
+    .about-features { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .about-feat { display: flex; align-items: flex-start; gap: 14px; }
+    .about-feat-icon {
+      width: 44px; height: 44px; border-radius: 10px; background: rgba(26,107,90,0.1);
+      color: var(--teal); display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .about-feat h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+    .about-feat p { font-size: 0.82rem; color: var(--gray); line-height: 1.5; }
+
+    /* ── PHOTO STRIP ── */
+    .photo-strip { overflow: hidden; padding: 0; background: var(--cream); }
+    .strip-track { display: flex; gap: 16px; padding: 16px 0; animation: scroll-strip 28s linear infinite; width: max-content; }
+    .photo-strip:hover .strip-track { animation-play-state: paused; }
+    @keyframes scroll-strip { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .strip-photo { width: 280px; height: 180px; object-fit: cover; border-radius: 12px; flex-shrink: 0; }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--cream); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 56px; }
+    .review-card {
+      background: white; border-radius: 16px; padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .review-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.1); }
+    .review-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .review-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.1rem; color: white; flex-shrink: 0;
+    }
+    .review-name { font-weight: 600; font-size: 0.95rem; }
+    .review-date { font-size: 0.78rem; color: var(--gray); }
+    .review-stars { color: #f59e0b; font-size: 0.95rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .review-text { color: var(--gray); font-size: 0.9rem; line-height: 1.7; font-style: italic; }
+    .google-badge {
+      display: flex; align-items: center; gap: 6px; margin-top: 16px;
+      color: var(--gray); font-size: 0.75rem;
+    }
+    .g-dot { width: 16px; height: 16px; border-radius: 50%; background: #4285f4; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.6rem; font-weight: 700; }
+    .reviews-cta { text-align: center; margin-top: 44px; }
+    .reviews-summary { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; font-size: 1rem; color: var(--gray); }
+    .reviews-summary strong { color: var(--dark); font-size: 1.4rem; }
+
+    /* ── CONTACT ── */
+    #contact { background: white; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; margin-top: 20px; align-items: start; }
+    .contact-info { padding-top: 10px; }
+    .contact-info p { color: var(--gray); line-height: 1.75; margin-bottom: 32px; }
+    .contact-detail { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 22px; }
+    .contact-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(26,107,90,0.1); color: var(--teal); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .contact-detail h4 { font-size: 0.85rem; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .contact-detail p { color: var(--dark); font-weight: 500; margin: 0; }
+    .contact-form { background: var(--cream); border-radius: 20px; padding: 40px; }
+    .contact-form h3 { font-size: 1.4rem; margin-bottom: 6px; }
+    .contact-form > p { color: var(--gray); font-size: 0.9rem; margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--dark); margin-bottom: 7px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 13px 16px; border: 1.5px solid var(--border);
+      border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      color: var(--dark); background: white; transition: border-color 0.2s;
+      appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--teal);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit { width: 100%; padding: 16px; background: var(--teal); color: white; border: none; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .form-submit:hover { background: var(--teal-light); transform: translateY(-1px); }
+    .form-success { display: none; text-align: center; padding: 24px 0; }
+    .form-success .check { font-size: 3rem; margin-bottom: 12px; }
+    .form-success h4 { font-size: 1.2rem; color: var(--teal); margin-bottom: 8px; }
+    .form-success p { color: var(--gray); font-size: 0.9rem; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 64px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand .nav-logo { margin-bottom: 16px; font-size: 1.1rem; }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 260px; }
+    .footer-socials { display: flex; gap: 12px; margin-top: 24px; }
+    .social-btn {
+      width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .social-btn:hover { background: var(--gold); }
+    .footer-col h4 { color: white; font-size: 0.9rem; font-weight: 700; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 0.88rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 0.82rem; }
+    .footer-bottom a:hover { color: var(--gold-light); }
+
+    /* ── FADE-UP ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-imgs { height: 300px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 64px 5%; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 20px; }
+      .about-features { grid-template-columns: 1fr; }
+      .steps { gap: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">✨</div>
+    <span>Crystal Clear Cleaning</span>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#how">How It Works</a>
+    <a href="#about">About</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact" class="nav-phone">📞 (555) 867-5309</a>
+    <a href="#contact" class="btn-nav">Get a Free Quote</a>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#how" onclick="toggleMenu()">How It Works</a>
+  <a href="#about" onclick="toggleMenu()">About Us</a>
+  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+  <a href="#contact" onclick="toggleMenu()">📞 (555) 867-5309</a>
+  <a href="#contact" class="btn-nav" onclick="toggleMenu()">Get a Free Quote</a>
+</div>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">⭐ #1 Rated Cleaning Service in Your City</div>
+    <h1>Your Home Deserves to<br/><span>Shine Brighter</span></h1>
+    <p class="hero-sub">Professional, insured, and background-checked cleaners who treat your home like their own. Reliable service, spotless results — every single time.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Get a Free Quote Today</a>
+      <a href="#services" class="btn-outline">See Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Happy Clients</span></div>
+      <div class="stat"><span class="stat-num">4.9★</span><span class="stat-label">Google Rating</span></div>
+      <div class="stat"><span class="stat-num">6+</span><span class="stat-label">Years Experience</span></div>
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Satisfaction</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🛡️</span> Fully Insured & Bonded</div>
+  <div class="trust-item"><span class="trust-icon">✅</span> Background-Checked Staff</div>
+  <div class="trust-item"><span class="trust-icon">🌿</span> Eco-Friendly Products</div>
+  <div class="trust-item"><span class="trust-icon">🔒</span> Satisfaction Guarantee</div>
+  <div class="trust-item"><span class="trust-icon">📅</span> Flexible Scheduling</div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="text-center">
+    <p class="section-label">What We Offer</p>
+    <h2 class="section-title">Cleaning Services Tailored to You</h2>
+    <p class="section-sub">From weekly maintenance to a deep top-to-bottom scrub — we have the right service for every home and budget.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <img class="service-img" src="https://images.unsplash.com/photo-1527515545081-5db817172677?w=600&q=80" alt="Standard Cleaning" />
+      <div class="service-body">
+        <div class="service-icon">🧹</div>
+        <h3>Standard Cleaning</h3>
+        <p>Our regular maintenance clean keeps your home consistently fresh — ideal for weekly or bi-weekly visits covering all main living areas.</p>
+        <a href="#contact" class="service-link">Book This Service →</a>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <img class="service-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Deep Cleaning" />
+      <div class="service-body">
+        <div class="service-icon">✨</div>
+        <h3>Deep Cleaning</h3>
+        <p>A thorough, top-to-bottom clean — perfect for first-time clients or seasonal refreshes. We tackle grout, baseboards, inside appliances, and more.</p>
+        <a href="#contact" class="service-link">Book This Service →</a>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <img class="service-img" src="https://images.unsplash.com/photo-1521783988139-89397d761dce?w=600&q=80" alt="Move In / Move Out" />
+      <div class="service-body">
+        <div class="service-icon">📦</div>
+        <h3>Move In / Move Out</h3>
+        <p>Start fresh or leave spotless. Our move-in/out service is designed to meet landlord and property management standards.</p>
+        <a href="#contact" class="service-link">Book This Service →</a>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <img class="service-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Office Cleaning" />
+      <div class="service-body">
+        <div class="service-icon">🏢</div>
+        <h3>Office & Commercial</h3>
+        <p>Keep your workspace professional and welcoming. Flexible scheduling including evenings and weekends to minimize disruption.</p>
+        <a href="#contact" class="service-link">Book This Service →</a>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <img class="service-img" src="https://images.unsplash.com/photo-1503389152951-9c3d8b6e9bbf?w=600&q=80" alt="Post Construction" />
+      <div class="service-body">
+        <div class="service-icon">🔨</div>
+        <h3>Post-Construction</h3>
+        <p>Renovation dust and debris no match for us. We handle all the fine particles, adhesive residue, and finishing touches after your build.</p>
+        <a href="#contact" class="service-link">Book This Service →</a>
+      </div>
+    </div>
+    <div class="service-card fade-up" style="background: linear-gradient(135deg, var(--teal-dark), var(--teal-light));">
+      <div class="service-body" style="padding: 44px 24px; text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 16px;">💬</div>
+        <h3 style="color: white; margin-bottom: 12px;">Need Something Custom?</h3>
+        <p style="color: rgba(255,255,255,0.8);">Not sure which service fits? Just reach out — we'll create a custom quote based on your exact needs.</p>
+        <a href="#contact" class="btn-primary" style="margin-top: 20px; display: inline-block;">Get a Custom Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section id="how">
+  <div class="text-center">
+    <p class="section-label">Simple Process</p>
+    <h2 class="section-title" style="color: white;">Booking Is Easy as 1-2-3</h2>
+    <p class="section-sub" style="color: rgba(255,255,255,0.7); margin: 0 auto;">We've made it simple to get your home cleaned without any hassle or back-and-forth.</p>
+  </div>
+  <div class="steps">
+    <div class="step fade-up">
+      <div class="step-num">1</div>
+      <h3>Get Your Free Quote</h3>
+      <p>Fill out our quick form or give us a call. We'll provide an upfront, transparent quote with no hidden fees — ever.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">2</div>
+      <h3>We Come to You</h3>
+      <p>Our vetted, uniformed cleaners arrive on time, fully equipped with professional-grade supplies and eco-friendly products.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">3</div>
+      <h3>Enjoy a Spotless Home</h3>
+      <p>Come home to a sparkling clean space. Not 100% satisfied? We'll come back and re-clean at no extra charge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-imgs">
+      <img class="about-img-main" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&q=80" alt="Clean home interior" />
+      <img class="about-img-sub" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500&q=80" alt="Cleaning team" />
+      <div class="about-badge">
+        <span class="about-badge-num">500+</span>
+        <span class="about-badge-text">Homes Cleaned<br/>& Counting</span>
+      </div>
+    </div>
+    <div class="fade-up">
+      <p class="section-label">Why Choose Us</p>
+      <h2 class="section-title">A Cleaning Company You Can Actually Trust</h2>
+      <p class="section-sub" style="margin-bottom: 8px;">We're not a faceless franchise — we're a local team that takes pride in every single job. Our cleaners are employees, not contractors, which means higher standards, better accountability, and consistent quality.</p>
+      <div class="about-features">
+        <div class="about-feat">
+          <div class="about-feat-icon">🌿</div>
+          <div>
+            <h4>Eco-Friendly Products</h4>
+            <p>Safe for kids, pets, and the planet — no harsh chemicals.</p>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon">🛡️</div>
+          <div>
+            <h4>Fully Insured</h4>
+            <p>$2M liability coverage so you're always protected.</p>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon">⭐</div>
+          <div>
+            <h4>Consistent Quality</h4>
+            <p>Checklists on every visit so nothing is ever missed.</p>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon">🔄</div>
+          <div>
+            <h4>Satisfaction Guarantee</h4>
+            <p>Not happy? We re-clean for free. Simple as that.</p>
+          </div>
+        </div>
+      </div>
+      <a href="#contact" class="btn-primary" style="margin-top: 36px; display: inline-block;">Get a Free Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PHOTO STRIP ── -->
+<div class="photo-strip">
+  <div class="strip-track">
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1600573472591-ee6a5d7f8e39?w=400&q=70" alt="" />
+    <!-- duplicate for seamless loop -->
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=70" alt="" />
+    <img class="strip-photo" src="https://images.unsplash.com/photo-1600573472591-ee6a5d7f8e39?w=400&q=70" alt="" />
+  </div>
+</div>
+
+<!-- ── REVIEWS ── -->
+<section id="reviews">
+  <div class="text-center">
+    <p class="section-label">What Clients Say</p>
+    <h2 class="section-title">Real Reviews from Real Customers</h2>
+    <p class="section-sub">Don't take our word for it — here's what our neighbors are saying about us.</p>
+  </div>
+  <div class="reviews-summary">
+    <span>⭐⭐⭐⭐⭐</span>
+    <strong>4.9</strong>
+    <span>based on 300+ Google reviews</span>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card fade-up">
+      <div class="review-header">
+        <div class="review-avatar" style="background: #4285f4;">S</div>
+        <div>
+          <div class="review-name">Sarah M.</div>
+          <div class="review-date">2 weeks ago</div>
+        </div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I've tried three different cleaning services in the past and Crystal Clear is by far the best. They were thorough, professional, and my house smelled amazing after. Will definitely be booking monthly!"</p>
+      <div class="google-badge"><div class="g-dot">G</div> Posted on Google</div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="review-header">
+        <div class="review-avatar" style="background: #34a853;">J</div>
+        <div>
+          <div class="review-name">James & Linda T.</div>
+          <div class="review-date">1 month ago</div>
+        </div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"We used them for a move-out clean and our landlord was absolutely stunned. Got our full security deposit back with zero issues. Super worth every penny — highly recommend!"</p>
+      <div class="google-badge"><div class="g-dot">G</div> Posted on Google</div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="review-header">
+        <div class="review-avatar" style="background: #ea4335;">A</div>
+        <div>
+          <div class="review-name">Amanda R.</div>
+          <div class="review-date">3 weeks ago</div>
+        </div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"As a mom of two with a dog, keeping the house clean is exhausting. These guys come every two weeks and it is life-changing. Always on time, always fantastic. I'd give 6 stars if I could!"</p>
+      <div class="google-badge"><div class="g-dot">G</div> Posted on Google</div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="review-header">
+        <div class="review-avatar" style="background: #fbbc04; color: #333;">M</div>
+        <div>
+          <div class="review-name">Michael D.</div>
+          <div class="review-date">2 months ago</div>
+        </div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Used them for post-construction cleaning after a kitchen renovation. The level of detail was unreal — got into every corner and left it spotless. The crew was respectful and efficient. Excellent service."</p>
+      <div class="google-badge"><div class="g-dot">G</div> Posted on Google</div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="review-header">
+        <div class="review-avatar" style="background: #9c27b0;">K</div>
+        <div>
+          <div class="review-name">Karen L.</div>
+          <div class="review-date">1 week ago</div>
+        </div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I have been using Crystal Clear for our office every week for 8 months now. Consistent, reliable, and they never miss a spot. My whole team notices when they come in on Monday mornings. 10/10."</p>
+      <div class="google-badge"><div class="g-dot">G</div> Posted on Google</div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="review-header">
+        <div class="review-avatar" style="background: #00796b;">D</div>
+        <div>
+          <div class="review-name">David & Maria C.</div>
+          <div class="review-date">5 days ago</div>
+        </div>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Booking was so easy — they responded fast, gave a fair quote, and showed up right on time. The deep clean took our home from dusty chaos to absolutely gleaming. We're customers for life now!"</p>
+      <div class="google-badge"><div class="g-dot">G</div> Posted on Google</div>
+    </div>
+  </div>
+  <div class="reviews-cta">
+    <a href="#contact" class="btn-primary">Join Our Happy Customers</a>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Ready for a Cleaner Home?</h2>
+      <p>Fill out the form and we'll get back to you within 24 hours with a free, no-obligation quote. Or just give us a call!</p>
+      <div class="contact-detail">
+        <div class="contact-icon">📞</div>
+        <div><h4>Phone</h4><p>(555) 867-5309</p></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">✉️</div>
+        <div><h4>Email</h4><p>hello@crystalclearcleaning.com</p></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div><h4>Service Area</h4><p>Your City & Surrounding Areas</p></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">🕐</div>
+        <div><h4>Hours</h4><p>Mon – Sat: 8am – 6pm</p></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Get Your Free Quote</h3>
+      <p>No commitment. No hidden fees. Just a clean home.</p>
+      <form id="quoteForm" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name *</label>
+            <input type="text" placeholder="Jane" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name *</label>
+            <input type="text" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" placeholder="(555) 000-0000" required />
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" placeholder="jane@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Service Needed *</label>
+          <select required>
+            <option value="" disabled selected>Select a service...</option>
+            <option>Standard Cleaning</option>
+            <option>Deep Cleaning</option>
+            <option>Move In / Move Out</option>
+            <option>Office / Commercial</option>
+            <option>Post-Construction</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Home Size</label>
+            <select>
+              <option value="" disabled selected>Select size...</option>
+              <option>Studio / 1 Bed</option>
+              <option>2 Bedrooms</option>
+              <option>3 Bedrooms</option>
+              <option>4+ Bedrooms</option>
+              <option>Commercial Space</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Additional Notes</label>
+          <textarea placeholder="Anything we should know? Pets, specific areas to focus on, etc."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send My Free Quote Request →</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="check">✅</div>
+        <h4>Request Received!</h4>
+        <p>Thanks! We'll reach out within 24 hours with your free quote. Talk soon!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <div class="nav-logo-icon">✨</div>
+        <span>Crystal Clear Cleaning</span>
+      </div>
+      <p>Bringing sparkle back to homes and offices across the city. Local, trusted, and dedicated to your satisfaction.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#" aria-label="Facebook">𝕗</a>
+        <a class="social-btn" href="#" aria-label="Instagram">📷</a>
+        <a class="social-btn" href="#" aria-label="Google">G</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#contact">Standard Cleaning</a></li>
+        <li><a href="#contact">Deep Cleaning</a></li>
+        <li><a href="#contact">Move In / Out</a></li>
+        <li><a href="#contact">Office Cleaning</a></li>
+        <li><a href="#contact">Post-Construction</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:5558675309">(555) 867-5309</a></li>
+        <li><a href="mailto:hello@crystalclearcleaning.com">hello@crystalclearcleaning.com</a></li>
+        <li><a href="#contact">Your City, ST 00000</a></li>
+        <li><a href="#contact">Get a Free Quote</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Crystal Clear Cleaning Co. All rights reserved.</span>
+    <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile menu toggle
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Scroll-triggered fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form success state
+  function submitForm(e) {
+    e.preventDefault();
+    document.getElementById('quoteForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>
